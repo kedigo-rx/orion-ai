@@ -237,7 +237,6 @@ export function SignInModal({ open, onClose, onSignIn }: SignInModalProps) {
             onClick={() => onSignIn("GitHub")}
             className="flex items-center justify-center gap-3 rounded-xl border border-border bg-card px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            <GitHub size={18} />
             Sign in with GitHub
           </button>
         </div>
