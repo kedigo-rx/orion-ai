@@ -8,7 +8,7 @@ import {
   Palette,
   Cpu,
   Check,
-  GitHub,
+  Github,
   Mail,
   Sparkles,
   Zap,
