@@ -10,9 +10,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Orion — Cosmic AI Assistant',
+  title: 'SlimeAI — Advanced AI Assistant',
   description:
-    'Orion is a premium AI chat assistant inspired by the colors of the Orion Nebula.',
+    'SlimeAI is an advanced AI chat assistant with real-time responses and neon-blue aesthetics.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: 'dark',
-  themeColor: '#0b0a14',
+  themeColor: '#0a1929',
 }
 
 export default function RootLayout({

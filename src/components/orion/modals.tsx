@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from "react"
 import { cn } from "@/lib/utils"
-import { OrionLogo } from "@/components/orion-logo"
+import { SlimeLogo } from "@/components/slime-logo"
 import {
   X,
   Palette,
@@ -83,7 +83,7 @@ export function SettingsModal({ open, onClose, glow, onGlowChange }: SettingsMod
   return (
     <ModalShell open={open} onClose={onClose}>
       <div className="flex items-center gap-2 border-b border-border px-6 py-4">
-        <OrionLogo size={22} />
+        <SlimeLogo size={22} />
         <h2 className="text-lg font-semibold">Settings</h2>
       </div>
 
@@ -116,12 +116,12 @@ export function SettingsModal({ open, onClose, glow, onGlowChange }: SettingsMod
               <div
                 className="mt-4 flex h-24 items-center justify-center rounded-2xl border border-border"
                 style={{
-                  background: `radial-gradient(circle, color-mix(in oklch, var(--nebula-pink) ${Math.round(
+                  background: `radial-gradient(circle, color-mix(in oklch, var(--primary) ${Math.round(
                     glow * 60,
                   )}%, transparent), transparent 70%)`,
                 }}
               >
-                <OrionLogo size={48} />
+                <SlimeLogo size={48} />
               </div>
               <p className="mt-2 text-xs text-muted-foreground">
                 Tüm uygulamadaki kozmik parıltı yoğunluğunu ayarlar.
@@ -134,7 +134,7 @@ export function SettingsModal({ open, onClose, glow, onGlowChange }: SettingsMod
             <ToggleRow label="Markdown render" description="Kod blokları ve biçimlendirmeyi etkinleştir" defaultOn />
             <ToggleRow label="Sohbet hafızası" description="Aynı oturumdaki önceki mesajları hatırla" defaultOn />
             <div className="rounded-2xl border border-border bg-card/60 p-4 text-xs text-muted-foreground">
-              Orion, GYF (Gmary Yazılım Firması) tarafından geliştirilen gelişmiş bir yapay zeka altyapısı kullanır.
+              SlimeAI, GYF (Gmary Yazılım Firması) tarafından geliştirilen gelişmiş bir yapay zeka altyapısı kullanır.
             </div>
           </div>
         )}
@@ -219,10 +219,10 @@ export function SignInModal({ open, onClose, onSignIn }: SignInModalProps) {
   return (
     <ModalShell open={open} onClose={onClose} className="max-w-md">
       <div className="flex flex-col items-center px-8 pb-8 pt-10 text-center">
-        <OrionLogo size={52} />
+        <SlimeLogo size={52} />
         <h2 className="mt-4 text-xl font-semibold">Connect your account</h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Sohbet geçmişini kaydet ve Orion&apos;u her yerde kullan.
+          Sohbet geçmişini kaydet ve SlimeAI'yı her yerde kullan.
         </p>
 
         <div className="mt-6 flex w-full flex-col gap-3">
@@ -232,12 +232,6 @@ export function SignInModal({ open, onClose, onSignIn }: SignInModalProps) {
           >
             <Mail size={18} className="text-[var(--nebula-pink)]" />
             Sign in with Google
-          </button>
-          <button
-            onClick={() => onSignIn("GitHub")}
-            className="flex items-center justify-center gap-3 rounded-xl border border-border bg-card px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
-            Sign in with GitHub
           </button>
         </div>
         <p className="mt-5 text-xs text-muted-foreground">
@@ -288,8 +282,8 @@ export function ProModal({ open, onClose }: ProModalProps) {
           <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-black/25 backdrop-blur-sm">
             <Sparkles size={28} className="text-white" />
           </div>
-          <h2 className="mt-3 text-2xl font-bold text-white">Orion Pro</h2>
-          <p className="mt-1 text-sm text-white/85">Kozmik gücün tamamını aç</p>
+          <h2 className="mt-3 text-2xl font-bold text-white">SlimeAI Pro</h2>
+          <p className="mt-1 text-sm text-white/85">Tam neon gücünü aç</p>
           <p className="mt-3 text-white">
             <span className="text-4xl font-extrabold">$9</span>
             <span className="text-sm text-white/85">/month</span>
@@ -338,7 +332,7 @@ export function ProModal({ open, onClose }: ProModalProps) {
               className="flex flex-col gap-3"
             >
               <p className="text-sm text-muted-foreground">
-                Orion Pro çok yakında geliyor! Erken erişim için e-postanı bırak.
+                SlimeAI Pro çok yakında geliyor! Erken erişim için e-postanı bırak.
               </p>
               <input
                 type="email"

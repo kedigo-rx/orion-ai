@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { OrionLogo } from "@/components/orion-logo"
+import { SlimeLogo } from "@/components/slime-logo"
 import type { ChatSession } from "./types"
 import {
   PanelLeftClose,
@@ -55,8 +55,8 @@ export function OrionSidebar({
         <div className={cn("flex items-center", open ? "justify-between" : "justify-center")}>
           {open && (
             <div className="flex items-center gap-2 pl-1">
-              <OrionLogo size={26} />
-              <span className="text-lg font-semibold tracking-tight">Orion</span>
+              <SlimeLogo size={26} />
+              <span className="text-lg font-semibold tracking-tight">SlimeAI</span>
             </div>
           )}
           <button
@@ -83,7 +83,7 @@ export function OrionSidebar({
             {open && (
               <span className="min-w-0 text-left">
                 <span className="block truncate text-sm font-medium text-foreground">{user.name}</span>
-                <span className="block text-xs text-muted-foreground">{user.provider}</span>
+                <span className="block text-xs text-muted-foreground">Google Auth</span>
               </span>
             )}
           </button>

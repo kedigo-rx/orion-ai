@@ -4,15 +4,18 @@ import { useRef, useState, type KeyboardEvent } from "react"
 import { cn } from "@/lib/utils"
 import { Mic, Paperclip, ArrowUp } from "lucide-react"
 import { PresetSelector } from "./preset-selector"
+import { ModelSelector } from "./model-selector"
 
 interface ChatInputProps {
   onSend: (text: string) => void
   disabled?: boolean
   preset: string
   onPresetChange: (id: string) => void
+  model: string
+  onModelChange: (id: string) => void
 }
 
-export function ChatInput({ onSend, disabled, preset, onPresetChange }: ChatInputProps) {
+export function ChatInput({ onSend, disabled, preset, onPresetChange, model, onModelChange }: ChatInputProps) {
   const [value, setValue] = useState("")
   const taRef = useRef<HTMLTextAreaElement>(null)
 
@@ -40,8 +43,11 @@ export function ChatInput({ onSend, disabled, preset, onPresetChange }: ChatInpu
 
   return (
     <div className="mx-auto w-full max-w-3xl">
-      <div className="mb-2 flex items-center justify-between px-1">
-        <PresetSelector value={preset} onChange={onPresetChange} />
+      <div className="mb-2 flex items-center justify-between gap-2 px-1">
+        <div className="flex gap-2">
+          <PresetSelector value={preset} onChange={onPresetChange} />
+          <ModelSelector value={model} onChange={onModelChange} />
+        </div>
       </div>
       <div
         className={cn(
@@ -66,7 +72,7 @@ export function ChatInput({ onSend, disabled, preset, onPresetChange }: ChatInpu
             autoGrow()
           }}
           onKeyDown={handleKeyDown}
-          placeholder="Ask Orion anything, or type 'generate image of…'"
+          placeholder="Ask SlimeAI anything, or type 'generate image of…'"
           className="orion-scroll max-h-44 flex-1 resize-none self-center bg-transparent py-2.5 text-[15px] leading-relaxed text-foreground placeholder:text-muted-foreground focus:outline-none"
         />
 
@@ -94,7 +100,7 @@ export function ChatInput({ onSend, disabled, preset, onPresetChange }: ChatInpu
         </button>
       </div>
       <p className="mt-2 text-center text-xs text-muted-foreground">
-        Orion can make mistakes. This is a simulated cosmic experience.
+        SlimeAI can make mistakes. This is an advanced AI experience.
       </p>
     </div>
   )

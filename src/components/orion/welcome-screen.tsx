@@ -1,6 +1,6 @@
 "use client"
 
-import { OrionLogo } from "@/components/orion-logo"
+import { SlimeLogo } from "@/components/slime-logo"
 import { Code2, ImageIcon, Lightbulb, PenLine } from "lucide-react"
 
 const QUICK_STARTS = [
@@ -25,7 +25,7 @@ const QUICK_STARTS = [
   {
     icon: PenLine,
     title: "Help me write",
-    prompt: "Help me write a short poem about the Orion constellation.",
+    prompt: "Help me write a short poem about the stars and galaxy.",
     color: "var(--nebula-purple)",
   },
 ]
@@ -33,9 +33,9 @@ const QUICK_STARTS = [
 export function WelcomeScreen({ onPick }: { onPick: (prompt: string) => void }) {
   return (
     <div className="orion-rise mx-auto flex w-full max-w-3xl flex-col items-center px-4 py-10 text-center">
-      <OrionLogo size={64} className="orion-spin-slow mb-6" />
-      <h1 className="text-balance bg-gradient-to-r from-[var(--nebula-orange)] via-[var(--nebula-pink)] to-[var(--nebula-purple)] bg-clip-text text-3xl font-semibold leading-tight text-transparent sm:text-4xl md:text-5xl">
-        Hello, I am Orion.
+      <SlimeLogo size={64} className="orion-spin-slow mb-6" />
+      <h1 className="text-balance bg-gradient-to-r from-[#00d9ff] via-[#00a8ff] to-[#0066ff] bg-clip-text text-3xl font-semibold leading-tight text-transparent sm:text-4xl md:text-5xl">
+        Hello, I am SlimeAI.
       </h1>
       <p className="mt-3 text-pretty text-lg text-muted-foreground sm:text-xl">
         How can I help you today?

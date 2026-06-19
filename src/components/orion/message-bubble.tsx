@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { OrionLogo } from "@/components/orion-logo"
+import { SlimeLogo } from "@/components/slime-logo"
 import type { ChatMessage } from "./types"
 import { Download, RotateCw, User, Sparkles } from "lucide-react"
 
@@ -28,7 +28,7 @@ export function MessageBubble({ message, onRegenerate }: MessageBubbleProps) {
 
   return (
     <div className="orion-rise flex w-full items-start gap-3">
-      <OrionLogo size={30} className="mt-1 shrink-0" />
+      <SlimeLogo size={30} className="mt-1 shrink-0" />
       <div className="min-w-0 flex-1 space-y-3">
         {message.content && (
           <p className="whitespace-pre-wrap leading-relaxed text-foreground">{message.content}</p>
@@ -103,8 +103,8 @@ function ImageBlock({
         {/* Elegant translucent Orion watermark, bottom-right */}
         {message.imageUrl && loaded && (
           <div className="pointer-events-none absolute bottom-2 right-2 flex items-center gap-1.5 rounded-full bg-black/35 px-2 py-1 backdrop-blur-sm">
-            <OrionLogo size={14} glow={false} />
-            <span className="text-[10px] font-semibold tracking-wide text-white/85">Orion</span>
+            <SlimeLogo size={14} glow={false} />
+            <span className="text-[10px] font-semibold tracking-wide text-white/85">SlimeAI</span>
           </div>
         )}
       </div>
@@ -116,7 +116,7 @@ function ImageBlock({
           href={message.imageUrl || "#"}
           target="_blank"
           rel="noopener noreferrer"
-          download="orion-creation.png"
+          download="slime-creation.png"
           aria-disabled={!loaded}
           className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-[var(--nebula-blue)]/60 hover:text-[var(--nebula-blue)] aria-disabled:pointer-events-none aria-disabled:opacity-50"
         >

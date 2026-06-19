@@ -6,7 +6,7 @@ import { WelcomeScreen } from "./welcome-screen"
 import { MessageBubble } from "./message-bubble"
 import { ThinkingIndicator } from "./thinking-indicator"
 import { ChatInput } from "./chat-input"
-import { OrionLogo } from "@/components/orion-logo"
+import { SlimeLogo } from "@/components/slime-logo"
 import { SettingsModal, SignInModal, ProModal } from "./modals"
 import type { ChatMessage, ChatSession } from "./types"
 import { Menu } from "lucide-react"
@@ -49,27 +49,60 @@ function makeSession(): ChatSession {
   return { id: uid(), title: "New Chat", messages: [], createdAt: Date.now() }
 }
 
-const SEED_SESSIONS: ChatSession[] = [
-  { id: uid(), title: "Roblox Luau script yardımı", messages: [], createdAt: Date.now() - 86400000 },
-  { id: uid(), title: "Yıldız gözlem uygulaması", messages: [], createdAt: Date.now() - 172800000 },
-  { id: uid(), title: "Bilim kurgu öyküsü", messages: [], createdAt: Date.now() - 259200000 },
-]
-
 export function OrionChat() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
-  const [sessions, setSessions] = useState<ChatSession[]>(() => [makeSession(), ...SEED_SESSIONS])
+  const [sessions, setSessions] = useState<ChatSession[]>(() => {
+    if (typeof window === "undefined") return [makeSession()]
+    try {
+      const saved = localStorage.getItem("orion-sessions")
+      return saved ? JSON.parse(saved) : [makeSession()]
+    } catch {
+      return [makeSession()]
+    }
+  })
   const [activeId, setActiveId] = useState<string>(() => "")
   const [thinking, setThinking] = useState(false)
   const [preset, setPreset] = useState("standard")
+  const [model, setModel] = useState("gemini-1.5-flash")
 
   // Account + modal + appearance state
-  const [user, setUser] = useState<OrionUser | null>(null)
+  const [user, setUser] = useState<OrionUser | null>(() => {
+    if (typeof window === "undefined") return null
+    try {
+      const saved = localStorage.getItem("orion-user")
+      return saved ? JSON.parse(saved) : null
+    } catch {
+      return null
+    }
+  })
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [signInOpen, setSignInOpen] = useState(false)
   const [proOpen, setProOpen] = useState(false)
   const [glow, setGlow] = useState(0.7)
 
   const scrollRef = useRef<HTMLDivElement>(null)
+
+  // Persist sessions to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem("orion-sessions", JSON.stringify(sessions))
+    } catch {
+      // localStorage may not be available
+    }
+  }, [sessions])
+
+  // Persist user to localStorage
+  useEffect(() => {
+    try {
+      if (user) {
+        localStorage.setItem("orion-user", JSON.stringify(user))
+      } else {
+        localStorage.removeItem("orion-user")
+      }
+    } catch {
+      // localStorage may not be available
+    }
+  }, [user])
 
   useEffect(() => {
     setActiveId((cur) => cur || sessions[0]?.id || "")
@@ -133,7 +166,7 @@ export function OrionChat() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: history, preset }),
+        body: JSON.stringify({ messages: history, preset, model }),
       })
 
       if (!res.ok || !res.body) {
@@ -245,8 +278,8 @@ export function OrionChat() {
             </button>
           )}
           <div className="flex items-center gap-2">
-            <OrionLogo size={24} />
-            <span className="text-base font-semibold tracking-tight">Orion</span>
+            <SlimeLogo size={24} />
+            <span className="text-base font-semibold tracking-tight">SlimeAI</span>
             <span className="rounded-full border border-border bg-card/60 px-2 py-0.5 text-[11px] text-muted-foreground">
               GYF
             </span>
@@ -269,7 +302,7 @@ export function OrionChat() {
         </div>
 
         <div className="px-4 pb-5 pt-2">
-          <ChatInput onSend={handleSend} disabled={thinking} preset={preset} onPresetChange={setPreset} />
+          <ChatInput onSend={handleSend} disabled={thinking} preset={preset} onPresetChange={setPreset} model={model} onModelChange={setModel} />
         </div>
       </main>
 

@@ -40,11 +40,11 @@
   --color-foreground: var(--foreground);
   --color-background: var(--background);
 
-  /* Orion Nebula accent palette */
-  --color-nebula-pink: var(--nebula-pink);
-  --color-nebula-purple: var(--nebula-purple);
-  --color-nebula-orange: var(--nebula-orange);
-  --color-nebula-blue: var(--nebula-blue);
+  /* SlimeAI Neon palette */
+  --color-slime-cyan: var(--slime-cyan);
+  --color-slime-blue: var(--slime-blue);
+  --color-slime-neon: var(--slime-neon);
+  --color-slime-accent: var(--slime-accent);
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -58,53 +58,53 @@
 :root {
   color-scheme: dark;
 
-  /* Nebula-black / deep slate base */
-  --background: oklch(0.16 0.03 285);
-  --foreground: oklch(0.95 0.01 280);
+  /* SlimeAI - deep dark blue/slate base */
+  --background: oklch(0.14 0.02 250);
+  --foreground: oklch(0.96 0.01 250);
 
-  --card: oklch(0.21 0.035 285);
-  --card-foreground: oklch(0.95 0.01 280);
-  --popover: oklch(0.19 0.035 285);
-  --popover-foreground: oklch(0.95 0.01 280);
+  --card: oklch(0.19 0.03 250);
+  --card-foreground: oklch(0.96 0.01 250);
+  --popover: oklch(0.17 0.03 250);
+  --popover-foreground: oklch(0.96 0.01 250);
 
-  /* Nebula pink as primary brand */
-  --primary: oklch(0.7 0.2 350);
-  --primary-foreground: oklch(0.16 0.03 285);
+  /* SlimeAI cyan/neon blue as primary brand */
+  --primary: oklch(0.7 0.25 200);
+  --primary-foreground: oklch(0.14 0.02 250);
 
-  --secondary: oklch(0.26 0.04 290);
-  --secondary-foreground: oklch(0.95 0.01 280);
-  --muted: oklch(0.24 0.035 288);
-  --muted-foreground: oklch(0.7 0.03 285);
-  --accent: oklch(0.28 0.05 300);
-  --accent-foreground: oklch(0.96 0.01 280);
+  --secondary: oklch(0.24 0.04 250);
+  --secondary-foreground: oklch(0.96 0.01 250);
+  --muted: oklch(0.22 0.035 250);
+  --muted-foreground: oklch(0.65 0.04 250);
+  --accent: oklch(0.26 0.06 195);
+  --accent-foreground: oklch(0.97 0.01 250);
   --destructive: oklch(0.62 0.22 25);
 
-  --border: oklch(0.32 0.04 290 / 60%);
-  --input: oklch(0.3 0.04 290 / 70%);
-  --ring: oklch(0.7 0.2 350);
+  --border: oklch(0.3 0.04 250 / 50%);
+  --input: oklch(0.28 0.04 250 / 60%);
+  --ring: oklch(0.7 0.25 200);
 
-  --chart-1: oklch(0.7 0.2 350);
-  --chart-2: oklch(0.6 0.2 300);
-  --chart-3: oklch(0.72 0.16 60);
-  --chart-4: oklch(0.7 0.16 250);
-  --chart-5: oklch(0.6 0.1 285);
+  --chart-1: oklch(0.7 0.25 200);
+  --chart-2: oklch(0.65 0.22 210);
+  --chart-3: oklch(0.68 0.2 190);
+  --chart-4: oklch(0.62 0.18 220);
+  --chart-5: oklch(0.58 0.15 250);
 
   --radius: 0.85rem;
 
-  --sidebar: oklch(0.18 0.03 287);
-  --sidebar-foreground: oklch(0.92 0.01 280);
-  --sidebar-primary: oklch(0.7 0.2 350);
-  --sidebar-primary-foreground: oklch(0.16 0.03 285);
-  --sidebar-accent: oklch(0.26 0.045 295);
-  --sidebar-accent-foreground: oklch(0.96 0.01 280);
-  --sidebar-border: oklch(0.32 0.04 290 / 50%);
-  --sidebar-ring: oklch(0.7 0.2 350);
+  --sidebar: oklch(0.16 0.03 250);
+  --sidebar-foreground: oklch(0.93 0.01 250);
+  --sidebar-primary: oklch(0.7 0.25 200);
+  --sidebar-primary-foreground: oklch(0.14 0.02 250);
+  --sidebar-accent: oklch(0.24 0.05 200);
+  --sidebar-accent-foreground: oklch(0.97 0.01 250);
+  --sidebar-border: oklch(0.3 0.04 250 / 40%);
+  --sidebar-ring: oklch(0.7 0.25 200);
 
-  /* Orion Nebula accents */
-  --nebula-pink: oklch(0.72 0.22 350);
-  --nebula-purple: oklch(0.62 0.22 300);
-  --nebula-orange: oklch(0.76 0.16 55);
-  --nebula-blue: oklch(0.72 0.15 245);
+  /* SlimeAI Neon Blue accents */
+  --nebula-pink: oklch(0.7 0.25 200);
+  --nebula-purple: oklch(0.65 0.22 210);
+  --nebula-orange: oklch(0.68 0.2 190);
+  --nebula-blue: oklch(0.7 0.25 200);
 }
 
 @layer base {
@@ -119,14 +119,14 @@
   }
 }
 
-/* Cosmic starfield backdrop */
+/* SlimeAI Neon starfield backdrop */
 .orion-cosmos {
-  background-color: oklch(0.16 0.03 285);
+  background-color: oklch(0.14 0.02 250);
   background-image:
-    radial-gradient(circle at 20% 25%, oklch(0.62 0.22 300 / 0.18), transparent 42%),
-    radial-gradient(circle at 80% 15%, oklch(0.72 0.22 350 / 0.16), transparent 40%),
-    radial-gradient(circle at 70% 85%, oklch(0.76 0.16 55 / 0.12), transparent 45%),
-    radial-gradient(circle at 10% 90%, oklch(0.72 0.15 245 / 0.14), transparent 45%);
+    radial-gradient(circle at 20% 25%, oklch(0.65 0.22 210 / 0.18), transparent 42%),
+    radial-gradient(circle at 80% 15%, oklch(0.7 0.25 200 / 0.16), transparent 40%),
+    radial-gradient(circle at 70% 85%, oklch(0.68 0.2 190 / 0.12), transparent 45%),
+    radial-gradient(circle at 10% 90%, oklch(0.7 0.25 200 / 0.14), transparent 45%);
 }
 
 /* Gemini-like fluid generating animation */

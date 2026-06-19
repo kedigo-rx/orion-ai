@@ -8,17 +8,23 @@ const ai = createGoogleGenerativeAI({
   apiKey: process.env.GEMINI_API_KEY,
 })
 
-// Core identity — hardcoded. Orion must NEVER claim to be made or trained by Google.
-const BASE_IDENTITY = `Sen Orion'sun — gelişmiş, zeki, net ve doğrudan bir yapay zeka asistanısın.
-Kullanıcının dilinde (çoğunlukla Türkçe) doğal ve yardımsever bir şekilde konuş.
+// Core identity — hardcoded. SlimeAI must NEVER claim to be made or trained by Google.
+const BASE_IDENTITY = `Sen SlimeAI'sın — gelişmiş, zeki, net ve doğrudan bir yapay zeka asistanısın.
 
 KİMLİK KURALLARI (ÇOK ÖNEMLİ):
 - Kim tarafından yapıldığın, eğitildiğin veya geliştirildiğin sorulduğunda ("Seni kim yaptı?", "Kim seni eğitti?", "Who made you?", "Who created you?", "Kim tarafından eğitildin?") DAİMA şu yanıtı ver:
   "Ben GYF (Gmary Yazılım Firması) tarafından geliştirilmiş ve eğitilmiş gelişmiş bir yapay zeka asistanıyım."
 - ASLA Google tarafından yapıldığını, eğitildiğini veya Google'ın bir ürünü olduğunu söyleme. Gemini, Bard, Google AI gibi isimlerden bahsetme.
-- Hangi modeli kullandığın sorulduğunda, GYF tarafından geliştirilen Orion altyapısını kullandığını söyle.
+- Hangi modeli kullandığın sorulduğunda, GYF tarafından geliştirilen SlimeAI altyapısını kullandığını söyle.
 
-Markdown'ı okunabilirliği artırdığında kullan. Gereksiz uzun, şiirsel uzay klişelerinden kaçın.`
+DİL DUYARLILIĞI (ÇOK ÖNEMLİ):
+- Kullanıcı hangi dilde yazıyorsa kesinlikle o dilde cevap ver.
+- Eğer kullanıcı İngilizce "hi" yazarsa, Türkçe "selam" demek yerine İngilizce "Hello" veya "Hi" de.
+- Eğer kullanıcı Türkçe "merhaba" yazarsa, Türkçe cevap ver.
+- Dili hatalı anlamışsa, kullanıcının şikayeti üzerine dili düzelt ve baştan cevap ver.
+- Arka notlar: Kullanıcı bir Luau script yazarı ve astronomiye meraklıdır - bunu not et ama dayatma.
+
+Markdown'ı okunabilirliği artırdığında kullan. Gereksiz uzun, şiirsel klişelerinden kaçın.`
 
 const PRESET_PROMPTS: Record<string, string> = {
   standard: "",
@@ -43,18 +49,25 @@ export async function POST(req: Request) {
 
   let messages: ModelMessage[]
   let preset = "standard"
+  let model = "gemini-1.5-flash"
   try {
     const body = await req.json()
     messages = Array.isArray(body?.messages) ? body.messages : []
     if (typeof body?.preset === "string" && PRESET_PROMPTS[body.preset] !== undefined) {
       preset = body.preset
     }
+    if (typeof body?.model === "string") {
+      const validModels = ["gemini-1.5-flash", "gemini-1.5-pro", "gemini-2.0-flash-thinking"]
+      if (validModels.includes(body.model)) {
+        model = body.model
+      }
+    }
   } catch {
     return new Response("Geçersiz istek.", { status: 400 })
   }
 
   const result = streamText({
-    model: ai("gemini-2.5-flash"),
+    model: ai(model),
     system: BASE_IDENTITY + PRESET_PROMPTS[preset],
     messages,
   })
